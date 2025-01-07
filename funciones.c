@@ -2,6 +2,17 @@
 #include <string.h>
 #include "funciones.h"
 
+int menu(){
+    int opc;
+    printf("1. Crear Alumno\n");
+    printf("2. Leer Alumnos\n");
+    printf("3. Buscar Alumno\n");
+    printf("4. Actualizar Alumno\n");
+    printf("5. Salir\n");
+    printf("Ingrese una opcion: ");
+    scanf("%d",&opc);
+    return opc;
+}
 
 void createAlumno(char nombre[], int edad, int notas[]){
     FILE *fnombre=fopen("nombres.txt","a+");
@@ -35,7 +46,7 @@ void readAlumno(){
         len = strlen(nombre) - 1;
         nombre[len]='\0';
         fscanf(fdatos,"%d %d %d %d\n",&edad,&n1,&n2,&n3);
-        printf("%d %s %d %d %d %d\n",i,nombre,edad,n1,n2,n3);
+        printf("%d\t\t%s\t\t%d\t\t%d\t\t%d\t\t%d\n",i,nombre,edad,n1,n2,n3);
         i++;
     }
     fclose(fnombre);
@@ -60,6 +71,9 @@ void searchAlumnoByNombre(char nombre[], int *posNombre, int *posDatos){
         if (strcmp(txnombre,nombre)==0)
         {
             f=1;
+            printf("Encontrado\n");
+            printf("Nombre\t\tEdad\t\tNota1\t\tNota2\t\tNota3\n");
+            printf("%s\t\t%s",txnombre,txdatos);
             break;
         }
         *posNombre = ftell(fnombre);
